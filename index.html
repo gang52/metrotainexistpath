@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="metroApp">
+<head>
+  <title>Metro Exit Mapping</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  
+</head>
+<body ng-controller="MetroController">
+  <img ng-src="src/unnamed.jpg" alt="">
+
+  <div class="container">
+    
+    <h1>CHENNAI METRO EXIST ROUTES</h1>npm serve
+    
+
+    
+
+    <label for="station">Select Station:</label>
+    <input 
+      type="text" 
+      id="station" 
+      ng-model="selectedStation" 
+      placeholder="Enter station name"
+      ng-class="{ 'input-highlight': selectedStation }"
+    >
+    <button ng-click="findExits()">Find Exits</button>
+
+    <!-- Display image for the station -->
+    <div ng-if="stationImage" class="station-image">
+      <img ng-src="{{stationImage}}" alt="{{selectedStation}} Image">
+    </div>
+
+    <!-- List of exits -->
+    <div ng-if="exits.length > 0">
+      <h2>Exits for {{selectedStation}}:</h2>
+      <ul>
+        <li ng-repeat="exit in exits" ng-class="'fade-in'">{{exit}}</li>
+      </ul>
+    </div>
+
+    <!-- Message for no exits found -->
+    <div ng-if="exits.length === 0 && selectedStation">
+      <p>No exits found for '{{selectedStation}}'. Please check the station name.</p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
